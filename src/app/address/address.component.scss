@@ -1,0 +1,28 @@
+.custom-field {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .submit-button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  mat-form-field {
+    display: block;
+  }
+  
+  mat-error {
+    color: red;
+    font-size: 14px;
+  }
+
+  .box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }

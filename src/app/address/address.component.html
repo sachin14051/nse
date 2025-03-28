@@ -1,0 +1,88 @@
+
+<app-navbar></app-navbar>
+
+<mat-card>
+    <div class="box">
+        <form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
+        <h2>Address Details</h2>
+        <mat-form-field class="custom-field" appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name">
+          @if (addressForm.get('name')?.touched && addressForm.get('name')?.invalid) {
+            <mat-error>Name is required</mat-error>
+          }
+        </mat-form-field>
+      
+        <mat-form-field class="custom-field" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email">
+          @if (addressForm.get('email')?.touched && addressForm.get('email')?.invalid) {
+            <mat-error>Enter a valid email</mat-error>
+          }
+        </mat-form-field>
+      
+        <mat-form-field class="custom-field" appearance="outline">
+          <mat-label>Phone</mat-label>
+          <input matInput type="text" formControlName="phone">
+          @if (addressForm.get('phone')?.touched && addressForm.get('phone')?.invalid) {
+            <mat-error>Enter a valid 10-digit phone number</mat-error>
+          }
+        </mat-form-field>
+      
+        <mat-form-field class="custom-field" appearance="outline">
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="address1">
+          @if (addressForm.get('address1')?.touched && addressForm.get('address1')?.invalid) {
+            <mat-error>Address is required</mat-error>
+          }
+        </mat-form-field>
+      
+        <mat-form-field class="custom-field" appearance="outline">
+          <mat-label>City</mat-label>
+          <input matInput formControlName="city">
+          @if (addressForm.get('city')?.touched && addressForm.get('city')?.invalid) {
+            <mat-error>City is required</mat-error>
+          }
+        </mat-form-field>
+      
+        <mat-form-field class="custom-field" appearance="outline">
+          <mat-label>State</mat-label>
+          <input matInput formControlName="state">
+          @if (addressForm.get('state')?.touched && addressForm.get('state')?.invalid) {
+            <mat-error>State is required</mat-error>
+          }
+        </mat-form-field>
+      
+        <mat-form-field class="custom-field" appearance="outline">
+          <mat-label>Postal Code</mat-label>
+          <input matInput formControlName="postalCode">
+          @if (addressForm.get('postalCode')?.touched && addressForm.get('postalCode')?.invalid) {
+            <mat-error>Enter a valid postal code</mat-error>
+          }
+        </mat-form-field>
+      
+        <mat-form-field class="custom-field" appearance="outline">
+          <mat-label>Country</mat-label>
+          <input matInput formControlName="country">
+          @if (addressForm.get('country')?.touched && addressForm.get('country')?.invalid) {
+            <mat-error>Country is required</mat-error>
+          }
+        </mat-form-field>
+      
+        <div class="file-upload-container">
+            <mat-label>Address Proof (PDF only)</mat-label>
+            <div>
+                <input type="file" id="fileUpload" (change)="onFileSelected($event)" accept="application/pdf">
+            </div>
+            @if (fileError) {
+              <p class="error-message">{{ fileError }}</p>
+            }
+          </div>
+          
+          
+      
+        <button mat-raised-button class="submit-button" color="primary" type="submit">Submit</button>
+      </form>
+      
+    </div>
+</mat-card>
