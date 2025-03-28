@@ -2,12 +2,13 @@ import { Component, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { NavbarComponent } from "../navbar/navbar.component";
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [ MatTableModule,
+  imports: [MatTableModule,
     MatPaginatorModule,
-    MatSortModule],
+    MatSortModule, NavbarComponent],
   templateUrl: './details.component.html',
   styleUrl: './details.component.scss'
 })
