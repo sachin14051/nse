@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -22,5 +22,9 @@ export class NavbarComponent implements OnInit {
   logout() {
     localStorage.removeItem('authToken');
     this.router.navigate(['/login']);
+  }
+
+  home(){
+    this.router.navigate(['/address'])
   }
 }

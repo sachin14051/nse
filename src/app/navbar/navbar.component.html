@@ -1,10 +1,10 @@
 <mat-toolbar color="primary" class="navbar">
-    <span class="logo">
+    <span class="logo" (click)="home()">
       <h2>NSE</h2>
     </span>
   
     <span class="spacer"></span>
-    <button mat-button routerLink="/address">
+    <button mat-button (click)="home()">
       <mat-icon>home</mat-icon> Home
     </button>
   
