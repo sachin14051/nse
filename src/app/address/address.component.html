@@ -61,13 +61,27 @@
           }
         </mat-form-field>
       
-        <mat-form-field class="custom-field" appearance="outline">
+        <!-- <mat-form-field class="custom-field" appearance="outline">
           <mat-label>Country</mat-label>
           <input matInput formControlName="country">
           @if (addressForm.get('country')?.touched && addressForm.get('country')?.invalid) {
             <mat-error>Country is required</mat-error>
           }
+        </mat-form-field> -->
+
+        <mat-form-field appearance="outline">
+          <mat-label>Select Country</mat-label>
+          <mat-select formControlName="country">
+            @for (country of countries; track country.code) {
+              <mat-option [value]="country.code">
+                {{ country.name }}
+              </mat-option>
+            }
+          </mat-select>
         </mat-form-field>
+        
+        <p>Selected Country: {{ selectedCountry }}</p>
+        
       
         <div class="file-upload-container">
             <mat-label>Address Proof (PDF only)</mat-label>

@@ -6,25 +6,31 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { CountryService } from '../service/country.service';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-address',
   standalone: true,
-  imports: [ReactiveFormsModule,MatInputModule,MatFormFieldModule,ReactiveFormsModule,
-    MatInputModule,MatFormFieldModule,MatButtonModule,FormsModule,MatCardModule,NavbarComponent],
-    templateUrl: './address.component.html',
-    styleUrl: './address.component.scss'
-  })
-  export class AddressComponent implements OnInit {
-    addressForm!:FormGroup
-    fileError: string | null = null;
-    private router = inject(Router)
+  imports: [ReactiveFormsModule, MatInputModule, MatFormFieldModule, ReactiveFormsModule,
+    MatInputModule, MatFormFieldModule, MatButtonModule, FormsModule, MatCardModule ,NavbarComponent,MatSelectModule],
+  templateUrl: './address.component.html',
+  styleUrl: './address.component.scss'
+})
+export class AddressComponent implements OnInit {
+  addressForm!: FormGroup
+  fileError: string | null = null;
+  selectedCountry: string = '';
+  countries: any[] = [];
+  private countryService = inject(CountryService);
+  private router = inject(Router)
 
   ngOnInit(): void {
-    this.form()
+    this.form();
+    this.country();
   }
 
-  form(){
+  form() {
     this.addressForm = new FormGroup({
       name: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -41,7 +47,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
   onSubmit() {
     if (this.addressForm.valid) {
       console.log('Form Submitted', this.addressForm.value);
-      localStorage.setItem("obj", JSON.stringify(this.addressForm.value) );
+      localStorage.setItem("obj", JSON.stringify(this.addressForm.value));
       this.router.navigate(['/details'])
     } else {
       this.addressForm.markAllAsTouched();
@@ -61,5 +67,17 @@ import { NavbarComponent } from '../navbar/navbar.component';
         this.addressForm.get('addressProof')?.setErrors(null);
       }
     }
+  }
+
+  country() {
+    this.countryService.getCountries().subscribe(
+      (data) => {
+        this.countries = data.map((country) => ({
+          code: country.cca2,
+          name: country.name.common,
+        }));
+      },
+      (error) => console.error('Error fetching countries:', error)
+    );
   }
 }
